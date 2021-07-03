@@ -1,3 +1,3 @@
 # inteligencia_artificial
-TCC Yukida
-r2-d2
+TCC of Yukida
+
