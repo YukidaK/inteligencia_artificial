@@ -1,5 +1,5 @@
 set PIP=pip
-set PYTHON=python3
+set PYTHON=C:\Users\mathe\PycharmProjects\inteligencia_artificial\venv\Scripts\python.exe
 
 echo %PYTHON%
 
@@ -26,17 +26,19 @@ rem  # Compute PCA features over the summary metrics from previous script
 rem %PYTHON% 04-pca.py
 
 rem  # Divide the training data into 10 (stratified by label) folds
-%PYTHON% 05-ten-folds.py
+rem %PYTHON% 05-ten-folds.py
 
 rem  # Train only the part of the model, that depends on the Log Mel-Spec features (10 folds)
-for (( FOLD=0; FOLD<=9; FOLD+=1 )); do
-  %PYTHON% 06-train-model-only-mel.py %FOLD%
-done
+for /l %%i in (0, 1, 9) do (
+    %PYTHON% 06-train-model-only-mel.py %%i
+)
+
 
 rem  # Train the full model, after loading weights from the mel-only model from previous script (10 folds)
-for (( FOLD=0; FOLD<=9; FOLD+=1 )); do
-  %PYTHON% 07-train-model-mel-and-pca.py %FOLD%
-done
+for /l %%i in (0, 1, 9) do (
+    %PYTHON% 07-train-model-mel-and-pca.py %%i
+)
+
 
 rem  # Generate predictions
 %PYTHON% 08-generate-predictions.py

@@ -38,6 +38,7 @@ train_metadata['label_idx'] = pd.Series(y_train_all_idx,
 # train and valid sets
 train_metadata.set_index('fname', inplace=True)
 fnames_train, fnames_valid = folds[this_fold]
+print(train_metadata.label_idx.loc[fnames_train].values)
 y_train = kr.utils.to_categorical(
     train_metadata.label_idx.loc[fnames_train].values,
     num_classes)

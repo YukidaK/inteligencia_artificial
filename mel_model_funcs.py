@@ -1,5 +1,4 @@
 import numpy as np
-import tensorflow as tf
 # from keras.utils import Sequence
 from tensorflow.keras.utils import Sequence
 from keras.applications.mobilenet_v2 import MobileNetV2
