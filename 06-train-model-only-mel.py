@@ -10,6 +10,7 @@ from keras import backend as ktf
 from tqdm import tqdm
 from utils import mel_0_1, get_random_eraser, CyclicLR, pushbullet_callback
 from mel_model_funcs import TrainGenerator, ValGenerator, create_mel_model
+from keras import utils as np_utils
 
 # Load data
 train_metadata = pd.read_csv('./data/train.csv')
@@ -39,10 +40,10 @@ train_metadata['label_idx'] = pd.Series(y_train_all_idx,
 train_metadata.set_index('fname', inplace=True)
 fnames_train, fnames_valid = folds[this_fold]
 print(train_metadata.label_idx.loc[fnames_train].values)
-y_train = kr.utils.to_categorical(
+y_train = kr.utils.np_utils.to_categorical(
     train_metadata.label_idx.loc[fnames_train].values,
     num_classes)
-y_valid = kr.utils.to_categorical(
+y_valid = kr.utils.np_utils.to_categorical(
     train_metadata.label_idx.loc[fnames_valid].values,
     num_classes)
 
