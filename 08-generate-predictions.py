@@ -4,9 +4,9 @@ import keras as kr
 from tqdm import tqdm
 from utils import uni_len, mel_0_1
 from mel_and_pca_model_funcs import create_mel_and_pca_model
+from tensorflow.keras.utils import Sequence
 
-
-class TestGenerator(kr.utils.Sequence):
+class TestGenerator(Sequence):
     def __init__(self,
                  mel_files,
                  pca_data,

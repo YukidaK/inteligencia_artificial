@@ -11,6 +11,7 @@ from tqdm import tqdm
 from utils import mel_0_1, get_random_eraser, CyclicLR, pushbullet_callback
 from mel_and_pca_model_funcs import TrainGenerator, ValGenerator, create_mel_and_pca_model
 from mel_model_funcs import create_mel_model
+from keras import utils as np_utils
 
 # Load train data
 fnames_train_all = pd.read_pickle('./data/train_tab_feats.pkl').fname.values
@@ -41,10 +42,10 @@ fnames_train, fnames_valid = folds[this_fold]
 pca_train = pca_train_all.loc[fnames_train, :].values
 pca_valid = pca_train_all.loc[fnames_valid, :].values
 
-y_train = kr.utils.to_categorical(
+y_train = kr.utils.np_utils.to_categorical(
     train_metadata.label_idx.loc[fnames_train].values,
     num_classes)
-y_valid = kr.utils.to_categorical(
+y_valid = kr.utils.np_utils.to_categorical(
     train_metadata.label_idx.loc[fnames_valid].values,
     num_classes)
 
